@@ -87,7 +87,7 @@ export default function WritePage() {
       {
         title,
         slug,
-        content: editor.getJSON(),
+        content: editor.getHTML(),
         cover_image: coverImage || null,
         published: true,
       },
