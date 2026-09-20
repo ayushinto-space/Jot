@@ -2,6 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { supabase } from '@/lib/supabase';
 
+function stripHtml(html: string) {
+  if (!html) return '';
+  return html.replace(/<[^>]*>/g, '').trim();
+}
+
 export const revalidate = 0;
 
 export default async function Home() {
@@ -66,9 +71,7 @@ export default async function Home() {
                       {post.title}
                     </h2>
                     <p className="text-slate-600 text-sm line-clamp-2 leading-relaxed">
-                      {typeof post.content === 'string'
-                        ? post.content
-                        : 'Click to read full article...'}
+                      {stripHtml(post.content)}
                     </p>
                   </Link>
                 </div>
